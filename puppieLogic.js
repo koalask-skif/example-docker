@@ -5,6 +5,12 @@ module.exports = { puppieLogic };
 
 async function puppieLogic(res) {
   const browser = await puppeteer.launch({
+    args: [
+      '--disable-setuid-sandbox',
+      '--no-sandbox',
+      '--single-process',
+      '--no-zigote',
+    ],
     //headless: false,
   });
 
