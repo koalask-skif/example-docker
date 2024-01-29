@@ -1,17 +1,24 @@
 const puppeteer = require('puppeteer');
+require('dotenv').config();
 
 module.exports = { puppieLogic };
 
-/* (async () => {
-  await puppieLogic();
-})(); */
-
 async function puppieLogic(res) {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({
+    args: [
+      '--disable-setuid-sandbox',
+      '--no-sandbox',
+      '--single-process',
+      '--no-zigote',
+    ],
+    executablePath:
+      process.env.NODE_ENV === 'production'
+        ? process.env.PUPPETERR_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
+    headless: false,
+  });
   try {
     const [page] = await browser.pages();
-
-    const url = 'https://developer.chrome.com/docs/extensions';
 
     await page.goto('https://developer.chrome.com/blog');
     //await page.click('#devsite-hamburger-menu');
