@@ -11,12 +11,12 @@ async function puppieLogic(res) {
       '--single-process',
       '--no-zigote',
     ],
-    executablePath:
-      process.env.NODE_ENV === 'production'
-        ? process.env.PUPPETERR_EXECUTABLE_PATH
-        : puppeteer.executablePath(),
-    headless: false,
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+    //headless: false,
   });
+  /*       process.env.NODE_ENV === 'production'
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(), */
   try {
     const [page] = await browser.pages();
 
