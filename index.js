@@ -7,8 +7,8 @@ app.get('/', (req, res) => {
   res.send('Example Docker Render');
 });
 
-app.get('/puppie', async (req, res) => {
-  await puppieLogic(res);
+app.get('/puppie', (req, res) => {
+  puppieLogic(res);
 });
 const PORT = process.env.PORT || 3000;
 
